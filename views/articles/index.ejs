@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,25 +10,32 @@
 </head>
 <body>
   <div class="container">
-    <h1 class="mb-4">Blog Articles</h1>
-    <a href="/articles/new" class="btn btn-success">New Article</a>
+    <a href="/" class="btn btn-outline-info btn-sm"><h1>Home</h1></a>
+    <h1 class="mb-4">Meetings</h1>
+    <a href="/articles/new" class="btn btn-outline-success">Add New Meeting</a>
 
     <% articles.forEach(article => { %>
       <div class="card mt-4">
         <div class="card-body">
           <h4 class="card-title"><%= article.title %></h4>
           <div class="card-subtitle text-muted mb-2">
-            <%= article.createdAt.toLocaleDateString() %>
+           <p>Created at:<%= article.createdAt.toLocaleDateString() %></p>
           </div>
-          <div class="card-text mb-2"><%= article.description %></div>
-          <a href="articles/<%= article.slug %>" class="btn btn-primary">Read More</a>
-          <a href="articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+          <div class="card-subtitle text-muted mb-2">
+            <p>Meeting Created by: <strong><%= user.email %></strong> user</p>
+          </div>
+          <div class="mb-2">Topic of Discussion- <%= article.description %></div>
+          <div class="card-text mb-2"></div>
+          <a href="articles/<%= article.slug %>" class="btn btn-outline-primary">Read More</a>
+          <a href="articles/edit/<%= article.id %>" class="btn btn-outline-info">Edit</a>
           <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
-            <button type="submit" class="btn btn-danger">Delete</button>
+            <button type="submit" class="btn btn-outline-danger">Delete</button>
           </form>
         </div>
       </div>
     <% }) %>
   </div>
+
+
 </body>
 </html>

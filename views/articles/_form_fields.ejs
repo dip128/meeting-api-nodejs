@@ -1,0 +1,18 @@
+<div class="form-group">
+  <label for="title">Title</label>
+  <input required value="<%= article.title %>" type="text" name="title" id="title" class="form-control">
+</div>
+<div class="form-group">
+  <label for="description">Topic of Discussion</label>
+  <textarea name="description" id="description" class="form-control"><%= article.description %></textarea>
+</div>
+<div class="form-group">
+  <label for="markdown">Note for Meeting</label>
+  <textarea name="markdown" id="markdown" class="form-control"><%= article.markdown %></textarea>
+</div>
+<div class="form-group">
+  <label for="meetingtime">Meeting(date and time):</label>
+  <input  required type="datetime-local" id="meetingtime" name="meetingtime" class="form-control">
+</div>
+<a href="/meeting" class="btn btn-secondary">Cancel</a>
+<button type="submit" class="btn btn-primary">Save</button>
