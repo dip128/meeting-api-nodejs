@@ -5,6 +5,8 @@ const authRoutes = require('./routes/authRoutes');
 const meetingRoutes=require('./routes/meetingRoutes');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override')
+const cron = require('node-cron');
+const scheduler = require("./scheduler");
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 const app= express();
 app.use(express.static('public'));
@@ -22,13 +24,13 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
 
 
 app.get('*', checkUser);   
-
- 
+//run the appointment notification scheduler
+scheduler.start();
 app.get('/',(req,res)=>{
     res.render('Home');
 });  
 
-app.get('/add', requireAuth ,(req,res)=>res.send('add'))
+
 app.use('/meeting',requireAuth, meetingRoutes)
 app.use('/articles', requireAuth, meetingRoutes)
 app.use(authRoutes);
